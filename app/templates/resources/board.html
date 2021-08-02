@@ -1,0 +1,13 @@
+<div class="board">
+    <div class="board-header">
+        <h3 contenteditable="true">{{ col.get_name() }}</h3>
+    </div>  
+    <div class="dropzone container sortable" id="{{ n }}">
+        {% for card in col.get_cards() %}
+            {% with status=card.get_status(), text=card.get_text() %}
+                {% include '/resources/card.html' %}
+            {% endwith %}
+        {% endfor %}
+    </div>
+    <button class="add-card" onclick="add_card( {{ n }} )">+ Añadir una tarjeta</button>
+</div>

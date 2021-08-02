@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <script src="https://kit.fontawesome.com/23d4a928a7.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800,900" rel="stylesheet">
+</head>
+<body>
+    <div class="boards">
+
+        {% set count = namespace(value=0) %}
+        {% for col in board.get_cols() %}
+            {% with n=count.value, col=col %}
+                {% include '/resources/board.html' %}
+            {% endwith %}
+            {% set count.value = count.value + 1 %}
+        {% endfor %}
+    </div>
+
+    {% include '/resources/delete_area.html' %}
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{ url_for('static',filename='js/script.js') }}" defer></script>
+    <!--script src="contextMenu.js" defer></script-->
+</body>
+</html>
